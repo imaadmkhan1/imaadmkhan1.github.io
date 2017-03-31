@@ -1,0 +1,14 @@
+<a-entity collada-model="#tree"></a-entity>
+      <a-cone color="tomato" radius-bottom="2" radius-top="0.5"></a-cone>
+     <a-entity color="red" position="1 1 1" text="text: Rashad"></a-entity>
+      <a-cylinder position="1 0.5 10" radius="0.5" height="1.5" color="#FFC65D" src="texture.jpg"></a-cylinder>
+
+
+src="https://aframe.io/aframe/examples/assets/models/tree2/tree2.dae"
+
+<a-entity camera position="0 75 30" wasd-controls-enabled="true">
+        <a-animation attribute="position"
+                dur="5000"
+                easing="linear"
+                to="0 -70 30"></a-animation>
+      </a-entity>

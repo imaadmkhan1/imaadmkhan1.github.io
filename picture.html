@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <title>ImaadVR</title>
+  <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+   <script src="set-image.js"></script>
+    <script src="update-raycaster.js"></script>
+   <script src="https://rawgit.com/gasolin/aframe-href-component/master/dist/aframe-href-component.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
+    <style>
+    #overlay {
+        position: fixed;
+        background: rgba(14,23,33,0.8);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        
+    }
+    .hide {
+        display: none;
+    }
+</style>
+<script>
+    $(window).load(function() {
+     $('#overlay').addClass('hide');
+    });
+</script>
+   
+  <!-- Image link template to be reused. -->
+       
+
+   </head>
+<body>
+  <div id="overlay"></div> 
+    <a-scene>
+    <a-assets>
+        <img id="myroom"  src="vr_myroom.jpg">
+         <img id="commonroom"  src="vr_commonroom.jpg">
+        <img id="kitchen" crossorigin="anonymous" src="vr_kitchen.jpg">
+        <img id="bathroom" crossorigin="anonymous" src="vr_bathroom.jpg">
+        </a-assets>
+
+         <script id="link" type="text/nunjucks">
+          <a-plane class="link" height="1" width="1"
+            material="shader: flat; src: {{ src }}"
+            event-set__1="_event: mousedown; scale: 1 1 1"
+            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+            event-set__4="_event: mouseleave; scale: 1 1 1"
+            set-image="on: click; target: #image-360; src: {{ src }}"
+           update-raycaster="#cursor"></a-plane>
+        </script>
+
+      <a-sky id="#image-360" src="#commonroom" ></a-sky>
+
+
+     
+
+      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+        <a-entity template="src: #link" data-src="#vr_myroom" href="#vr_commonroom" ></a-entity>
+        <a-entity template="src: #link" data-src="#vr_commonroom" ></a-entity>
+        <a-entity template="src: #link" data-src="#vr_kitchen" ></a-entity>
+        <a-entity template="src: #link" data-src="vr_bathroom" ></a-entity>
+
+      </a-entity>
+       <a-entity camera look-controls>
+        <a-cursor id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: springgreen"
+          event-set__2="_event: mouseleave; color: black"
+          raycaster="objects: .link"></a-cursor>
+
+   
+   </a-scene>
+   </body>
+</html>

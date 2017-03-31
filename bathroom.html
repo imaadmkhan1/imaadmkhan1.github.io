@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <title>ImaadVR</title>
+ <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+   <script src="https://rawgit.com/gasolin/aframe-href-component/master/dist/aframe-href-component.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    #overlay {
+        position: fixed;
+        background: rgba(14,23,33,0.8);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        
+    }
+    .hide {
+        display: none;
+    }
+</style>
+<script>
+    $(window).load(function() {
+     $('#overlay').addClass('hide');
+    });
+</script>
+   
+  <!-- Image link template to be reused. -->
+       
+
+   </head>
+<body>
+  <div id="overlay"></div> 
+    <a-scene>
+    <a-assets>
+       <img id="bathroom" crossorigin="anonymous" src="vr_bathroom.jpg">
+       </a-assets>
+
+        
+ <a-entity position="-1.375 -295 0" rotation="0 45 0" text="text: Bathroom" href="http://localhost:8080/aframevr/bathroom.html"></a-entity>
+      <a-sky id="#image-360" src="#bathroom" ></a-sky>
+
+       <a-entity camera look-controls>
+        <a-camera wasd-controls-enabled="false">
+         <a-entity position="0 2 -3"
+                  geometry="primitive: ring; radiusOuter: 0.10;
+                            radiusInner: 0.05;"
+                  material="color: cyan; shader: flat"
+                  cursor="maxDistance: 30; fuse: true">
+          <a-animation begin="click" easing="ease-in" attribute="scale"
+             fill="none" from="0.1 0.1 0.1" to="1 1 1" dur="1500"></a-animation>
+        <a-animation begin="fusing" easing="ease-in" attribute="scale"
+             fill="none" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+
+        </a-camera>
+
+       </a-entity>
+   </a-scene>
+   </body>
+</html>
