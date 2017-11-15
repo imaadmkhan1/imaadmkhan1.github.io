@@ -1,40 +1,231 @@
 <!doctype html>
-<html>
-<head>
-  <title>ImaadVR</title>
-  <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+<html lang="en">
 
-</head>
-<body>
-    <a-scene>
-   
-   <a-assets>
-   <a-asset-item id="skull" src="skull.dae"></a-asset-item>
-      </a-assets>
-  <a-collada-model src="#skull" rotation="0 45 0" >
-      <a-sky color="tomato" ></a-sky>
-       <a-entity position="5 2.5 -1" text="text: The Human Skull"></a-entity>
-      <a-entity position="0 1.6 10" wasd-controls-enabled="true" >
-      <a-animation begin="click" attribute="rotation" to="0 0 360"
-                   easing="linear" dur="10000" fill="forwards" ></a-animation>
-        <a-camera look-controls wasd-controls>
-        <a-entity position="0 2 -3"
-                  geometry="primitive: ring; radiusOuter: 0.20;
-                            radiusInner: 0.15;"
-                  material="color: cyan; shader: flat"
-                  cursor="maxDistance: 30; fuse: true">
-          <a-animation begin="click" easing="ease-in" attribute="scale"
-             fill="none" from="0.1 0.1 0.1" to="1 1 1" dur="1500"></a-animation>
-        <a-animation begin="fusing" easing="ease-in" attribute="scale"
-             fill="none" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+	<head>
+		<meta charset="utf-8">
 
-        </a-camera>
-      </a-entity>
-      
-    </a-collada-model>
+		<title>Master Thesis Presentation</title>
 
-      </a-scene>
+		<meta name="description" content="Master Thesis Presentation">
+		<meta name="author" content="Imaad M Khan">
 
-  </body>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/pikestreet.css" id="theme">
+
+		<!-- Code syntax highlighting - also available: visualstudio.css & zenburn.css -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<!-- Icons -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal pikestreet">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="assets/background.png" >
+				<img src="assets/l3s.png"  height="100" width="100">
+						<img src="assets/luh_logo.png"  height="100" width="300">
+					<div class="accent">
+						<h2>Master Thesis Presentation</h2>
+						<h3>Detection of Misleading Content on Twitter<br /> During a Crisis Situation</h3>
+				
+					</div>
+					<small>Imaad Mohamed Khan<br />L3S Research Center <br />Hannover, Germany</small>
+
+		
+				</section>
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
+				<section>
+				<h2 style="margin-top:10%">Outline</h2>
+				</section>
+				<section>
+					<ol>
+						<li>Introduction</li>
+						<li>Fake Image Detection Framework</li>
+						<ul>
+						<li>CRISP-DM Methodology</li>
+						<li>Business Understanding</li>
+						<li>Data Understanding</li>
+						<li>Data Preparation</li>
+						<li>Modeling</li>
+						<li>Evaluation</li>
+						<li>Deployment</li>
+						</ul>
+						<li>Fake Image Tweet Gathering Framework</li>
+						<li>Comparative analysis of recent terror attacks</li>
+						<li>Conclusions</li>
+						<li>Future Work</li>
+					</ol>
+				</section>
+				</section>
+				
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
+				<section>
+				<h2 style="margin-top:10%">Introduction</h2>
+				</section>
+				<section>
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				<section>
+				<h3>Misinformation on Twitter</h3>
+				<iframe width="854" height="480" src="https://www.youtube.com/embed/0s70gbdf4AY" frameborder="0" gesture="media" allowfullscreen></iframe>
+				</section>
+				<section>
+				<h3>Misinformation on Twitter</h3>
+				<img src="assets/shark.png" height="600px"  >
+				</section>
+				<section>
+				<h3>K3 Project -  Krisenkommunikation in sozialen Netzwerken</h3>
+				<ul>
+				<li>
+				Using social media networks to extract relevant information during a crisis.
+				</li>
+				<li>
+				Providing relief organizations actionable insights from twitter and other social media networks.
+				</li>
+				</ul>
+				
+				</section>
+				</section>
+				
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
+				<section>
+				<h2 style="margin-top:10%">Fake Image Tweet Detection Framework</h2>
+				</section>
+				<section	>
+				<h3>Fake Image Tweet Detection Framework</h3>
+				<img src="assets/fake_framework.jpg" height="500px">
+				</section>
+				<section>
+				<h2 style="margin-top:10%">CRISP-DM Methodology</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h4>Cross Industry Standard Process for Data Mining</h4>
+				<img src="assets/crispdm.jpg" height="600px"  >
+				</section>
+				<section>
+				<h2 style="margin-top:10%">Business Understanding</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h3>Business Understanding</h3>
+				<img src="assets/business_understanding_comic.png" height="500px">
+				</section>
+				
+				<section>
+				<h2 style="margin-top:10%">Data Understanding</h2>
+				</section>
+				<section>
+				<h3>Data Understanding</h3>
+				<img src="assets/data_understanding_comic.png" height="500px"  >
+				</section>
+				
+				<section>
+				<h2 style="margin-top:10%">Data Preparation</h2>
+				</section>
+				<section>
+				<h3>Data Preparation</h3>
+				<p>This phase involves all activities necessary to construct final data that can be used for modeling.
+				</p>
+				<ol>
+				<li>Preparing our data by manually annotating tweets</li>
+				<li>Preparing authors' data</li>
+				</ol>
+				</section>
+				<section>
+				<h3>Data Preparation</h3>
+				<img src="assets/data_preparation.jpg" height="400px"  >
+				</section>
+				
+				
+				<section>
+				<h2 style="margin-top:10%">Modeling</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				
+				<section>
+				<h2 style="margin-top:10%">Deployment</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				</section>
+				
+			
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<section>
+				<h2 style="margin-top:10%">Fake Image Tweet Gathering Framework</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h3>Framework - Block Diagram</h3>
+				<img src="assets/fake_data_framework.png" height="400px">
+				</section>
+				</section>
+				
+		
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<section>
+				<h2 style="margin-top:10%">Comparative analysis of recent terror attacks</h2>
+				</section>
+				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				</section>
+				
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<section>
+				<h2 style="margin-top:10%">Conclusions</h2>
+				</section>
+				<section>
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				</section>
+				
+				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
+				<section>
+				<h2 style="margin-top:10%">Future Work</h2>
+				</section>
+				<section>
+				<h3>Fake News - Word of the year</h3>
+				<img src="assets/fake_news.png" height="600px"  >
+				</section>
+				</section>
+
+				
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script src="js/pikestreet.js"></script>
+	</body>
 </html>
