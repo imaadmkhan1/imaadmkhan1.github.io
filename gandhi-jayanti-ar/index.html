@@ -25,10 +25,11 @@
             <a-entity
                 id="animated-model"
                 gltf-model="#animated-asset"
+                sound="src: #sound"
+                autoplay="false"
                 scale="2">
             </a-entity>
         </a-marker>
-        <a-entity sound="src: #sound" autoplay="false"></a-entity>
         <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
         <a-entity camera></a-entity>
         </a-scene>
