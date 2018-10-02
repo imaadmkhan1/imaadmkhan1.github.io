@@ -1,270 +1,33 @@
-<!doctype html>
-<html lang="en">
+<!doctype HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    
+    <!-- import events.js script -->
+    <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/events.js"></script>
+    
+    <body style='margin : 0px; overflow: hidden;'>
+        <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+        <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
-	<head>
-		<meta charset="utf-8">
+        <a-assets>
+            <a-asset-item id="animated-asset" src="/home/imaad/pythonprojects/gandhi-jayanti-ar/scene.gltf"></a-asset-item>
+        </a-assets>
 
-		<title>Master Thesis Presentation</title>
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='barcode' value='6'>
+            <a-entity
+                id="animated-model"
+                gltf-model="#animated-asset"
+                scale="2">
+            </a-entity>
+        </a-marker>
 
-		<meta name="description" content="Master Thesis Presentation">
-		<meta name="author" content="Imaad M Khan">
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/pikestreet.css" id="theme">
-
-		<!-- Code syntax highlighting - also available: visualstudio.css & zenburn.css -->
-		<link rel="stylesheet" href="lib/css/github.css">
-
-		<!-- Icons -->
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-
-	<body>
-
-		<div class="reveal pikestreet">
-
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section data-background="assets/background.png" >
-				<img src="assets/l3s.png"  height="100" width="100">
-						<img src="assets/luh_logo.png"  height="100" width="300">
-					<div class="accent">
-						<h2>Master Thesis Presentation</h2>
-						<h3>Detection of Misleading Content on Twitter<br /> During a Crisis Situation</h3>
-				
-					</div>
-					<small>Imaad Mohamed Khan<br />L3S Research Center <br />Hannover, Germany</small>
-
-		
-				</section>
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
-				<section>
-				<h2 style="margin-top:10%">Outline</h2>
-				</section>
-				<section>
-					<ol>
-						<li>Introduction</li>
-						<li>Fake Image Detection Framework</li>
-						<ul>
-						<li>CRISP-DM Methodology</li>
-						<li>Business Understanding</li>
-						<li>Data Understanding</li>
-						<li>Data Preparation</li>
-						<li>Modeling</li>
-						<li>Evaluation</li>
-						<li>Deployment</li>
-						</ul>
-						<li>Fake Image Tweet Gathering Framework</li>
-						<li>Comparative analysis of recent terror attacks</li>
-						<li>Conclusions</li>
-						<li>Future Work</li>
-					</ol>
-				</section>
-				</section>
-				
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
-				<section>
-				<h2 style="margin-top:10%">Introduction</h2>
-				</section>
-				<section>
-				<h3>Fake News - Word of the year</h3>
-				<img src="assets/fake_news.png" height="600px"  >
-				</section>
-				<section>
-				<h3>Misinformation on Twitter</h3>
-				<iframe width="854" height="480" src="https://www.youtube.com/embed/0s70gbdf4AY" frameborder="0" gesture="media" allowfullscreen></iframe>
-				</section>
-				<section>
-				<h3>Misinformation on Twitter</h3>
-				<img src="assets/shark.png" height="600px"  >
-				</section>
-				<section>
-				<h3>Definition of a Fake Image</h3>
-				<img src="assets/fake_definition.png" height="394px" width="1052	px"  >
-				
-				</section>
-				</section>
-				
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat" >
-				<section>
-				<h2 style="margin-top:10%">Fake Image Tweet Detection Framework</h2>
-				</section>
-				<section	>
-				<h3>Fake Image Tweet Detection Framework</h3>
-				<img src="assets/fake_framework.jpg" height="500px">
-				</section>
-				<section>
-				<h2 style="margin-top:10%">CRISP-DM Methodology</h2>
-				</section>
-				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<h4>Cross Industry Standard Process for Data Mining</h4>
-				<img src="assets/crispdm.jpg" height="600px"  >
-				</section>
-				<section>
-				<h2 style="margin-top:10%">Business Understanding</h2>
-				</section>
-				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<h3>Business Understanding</h3>
-				<img src="assets/business_understanding_comic.png" height="500px">
-				</section>
-				
-				<section>
-				<h2 style="margin-top:10%">Data Understanding</h2>
-				</section>
-				<section>
-				<h3>Data Understanding</h3>
-				<img src="assets/data_understanding_comic.png" height="500px"  >
-				</section>
-				<section>
-				<h3>Data Understanding</h3>
-				</br>
-				<p>
-				<ul>
-				<li>We collected and labelled 48 images (24 fake and 24 real) across 3 recent terror attacks - Manchester Attack 2017, Stockholm Attack 2017 and Berlin Attack 2016.</li>
-				</br>
-				<li>The authors provided with a corpus of tweets across 17 events. It contained 220 fake and 193 real images and videos associated with 9596 fake and 6225 real tweets.</li>
-				</section>
-				
-				<section>
-				<h2 style="margin-top:10%">Data Preparation</h2>
-				</section>
-				<section>
-				<h3>Data Preparation</h3>
-				</br>
-				<p>This phase involves all activities necessary to construct final data that can be used for modeling.
-				</p>
-				<ol>
-				<li>Preparing our data by manually annotating tweets.</li>
-				<li>Preparing authors' data.</li>
-				</ol>
-				</section>
-				<section>
-				<h3>Data Preparation</h3>
-				<img src="assets/data_preparation.jpg" height="400px"  >
-				</section>
-				<section>
-				<h3>Tweet Features</h3>
-				<img src="assets/tweet_features.jpg" height="500px"  >
-				</section>
-				<section>
-				<h3>User Features</h3>
-				<img src="assets/user_features.jpg" height="500px"  >
-				</section>
-				
-				<section>
-				<h2 style="margin-top:10%">Modeling</h2>
-				</section>
-				<section>
-				<h3>Classification Models</h3>
-				<img src="assets/classifiers.jpg" height="500px"></img>
-				</section>
-				<section>
-				<h3>Agreement Retraining</h3>
-				<img src="assets/agreement_retraining.jpg" height="500px"></img>
-				</section>
-				
-				<section>
-				<h2 style="margin-top:10%">Evaluation</h2>
-				</section>
-				<section>
-				<h3>Evaluation</h3>
-				<img src="assets/evaluation.jpg" height="500px"></img>
-				</section>
-				
-			
-				
-				<section>
-				<h2 style="margin-top:10%">Deployment</h2>
-				</section>
-				</section>
-				
-				
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<section>
-				<h2 style="margin-top:10%">Fake Image Tweet Gathering Framework</h2>
-				</section>
-				<section class="inverse" data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<h3>Framework - Block Diagram</h3>
-				<img src="assets/fake_data_framework.png" height="400px">
-				</section>
-				<section>
-				<h2>Experiment</h2>
-				</section>
-				<section>
-				<h3>Experiment</h3>
-				</br>
-				<ul>
-				<li>Manchester Terror Attack - 23rd May 2017</li>
-				<li>Using GDELT, collected news articles for a week, from 22nd May 2017 to 29 May 2017.</li>
-				<li>Filter only relevant articles using search terms like: fake, false fraud, malicious, hoax, untrue and unreal. </li>
-				<li>Drop duplicate retrievals. </li>
-				<li>Finally, retrieved 49 news articles for a period of one week.</li>
-				<li>Most articles contain either embedded tweets or tweet images</li>
-				</ul>
-				</section>
-				</section>
-				
-		
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<section>
-				<h2 style="margin-top:10%">Comparative analysis of recent terror attacks</h2>
-				</section>
-				<section>
-				<h3>Exploratory Data Analysis</h3>
-				<img src="assets/fake_image_url_distribution.jpg" height="500px"  >
-				</section>
-				<section>
-				<h3>Tweet Frequencies</h3>
-				<img src="assets/tweet_frequencies.png" height="500px"  >
-				</section>
-				</section>
-				
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<section>
-				<h2 style="margin-top:10%">Conclusions</h2>
-				</section>
-				<section>
-				<h3>Fake News - Word of the year</h3>
-				<img src="assets/fake_news.png" height="600px"  >
-				</section>
-				</section>
-				
-				<section data-background="assets/ocean.jpg" data-background-size="700px" data-background-repeat="repeat">
-				<section>
-				<h2 style="margin-top:10%">Future Work</h2>
-				</section>
-				<section>
-				<h3>Fake News - Word of the year</h3>
-				<img src="assets/fake_news.png" height="600px"  >
-				</section>
-				</section>
-
-				
-			</div>
-
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-		<script src="js/pikestreet.js"></script>
-	</body>
+        <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
+        <a-entity camera></a-entity>
+        </a-scene>
+    </body>
 </html>
