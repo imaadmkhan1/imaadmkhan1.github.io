@@ -13,3 +13,4 @@ AFRAME.registerComponent('markerhandler', {
             }
         });
 }});
+
